@@ -47,6 +47,9 @@ public class Main extends JFrame {
         g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX, (int) (trueCentreY - lgt));
         g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX + lgt, (int) trueCentreY);
         g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX - lgt, (int) trueCentreY + lgt); // Have to do some circle calculation here
+        for (int j = lgt; j > 0; j--){
+            g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX - lgt, (int) ((int) trueCentreY + Math.sqrt(lgt-(((int) trueCentreX - lgt)*((int) trueCentreX - lgt)))));
+        }
     }
 
     @Override public void paint(Graphics g){
