@@ -43,12 +43,14 @@ public class Main extends JFrame {
     // Merely a ruler
     public void ruler(Graphics g){
         g.setColor(Color.black);
-        int lgt = 50;
+        int lgt = 100;
         g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX, (int) (trueCentreY - lgt));
         g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX + lgt, (int) trueCentreY);
         g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX - lgt, (int) trueCentreY + lgt); // Have to do some circle calculation here
         for (int j = lgt; j > 0; j--){
-            g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX - lgt, (int) ((int) trueCentreY + Math.sqrt(lgt-(((int) trueCentreX - lgt)*((int) trueCentreX - lgt)))));
+            g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX - j, (int)(trueCentreY + Math.sqrt(-1*(lgt-((trueCentreX - j)*(trueCentreX - j)))))); // this should result in a quarter circle, but it really doesn't wanna work the way I want it to
+            System.out.println(trueCentreX - j);
+            System.out.println(Math.sqrt(-1*(lgt-((trueCentreX - j)*(trueCentreX - j))))); //near same result as the calculation above
         }
     }
 
