@@ -15,21 +15,43 @@ public class Main extends JFrame {
     It is important to note, that I haven't programmed in a while, and the initial development-phase of this project is just me testing the waters.
      */
 
-    Main(){
+    private int dims = 0;
+    private double trueCentreX = 0;
+    private double trueCentreY = 0;
+
+    Main(int dims){
+        this.dims = dims;
+        trueCentreX = dims / 2;
+        trueCentreY = dims / 2;
     }
 
-    public void run(int dims){
+    // Main program
+    public void run(){
         System.out.println("Test");
         Graphics g = this.getGraphics();
-        g.setColor(Color.magenta);
+        g.setColor(Color.white);
         g.fillRect(0,0,dims,dims);
+        /*
+        g.setColor(Color.cyan);
+        g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX,10);
+         */
         System.out.println("Test 2");
+        ruler(g);
+
+    }
+
+    // Merely a ruler
+    public void ruler(Graphics g){
+        g.setColor(Color.black);
+        int lgt = 50;
+        g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX, (int) (trueCentreY - lgt));
+        g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX + lgt, (int) trueCentreY);
+        g.drawLine((int) trueCentreX, (int) trueCentreY, (int) trueCentreX - lgt, (int) trueCentreY + lgt); // Have to do some circle calculation here
     }
 
     @Override public void paint(Graphics g){
         setBackground(Color.white); //huh?
-        run(600); // How can I transfer "dims" to over here?
-
+        run();
                         // Due to some issues w/ the Graphics thingy, I am required to run this override command.
                         // This, however, causes the project to execute several times in a row, which I foresee to cause
                         // massive issues in the future.
@@ -39,13 +61,13 @@ public class Main extends JFrame {
 
         int dims = 600;
 
-        Main prog = new Main();
+        Main prog = new Main(dims);
         prog.setSize(dims,dims);
         prog.setResizable(false);
         prog.setTitle("Orthographic Projector");
         prog.setVisible(true);
         prog.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        prog.run(dims);
+        prog.run();
         System.out.println("\n ======= This code has been provided by TheBoringEdward with the help of some fellows =======\n\n");
     }
 }
